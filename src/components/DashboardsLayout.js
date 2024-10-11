@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme } from '@mui/material/styles';
@@ -47,6 +48,120 @@ const NAVIGATION = [
     {
         segment: 'more',
         title: 'More',
+        icon: <DashboardIcon />,
+    },
+    {
+        kind: 'divider',
+    },
+    {
+        kind: 'header',
+        title: 'Management',
+    },
+    {
+        segment: 'help chat',
+        title: 'Help Chat',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'inventory management',
+        title: 'Inventory Management',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'add expences',
+        title: 'Add Expenses',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'receipt',
+        title: 'Receipt',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'customer management',
+        title: 'Customer management',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'staff management',
+        title: 'Staff Management',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'shopfront',
+        title: 'ShopFront',
+        icon: <DashboardIcon />,
+    },
+    {
+        kind: 'divider',
+    },
+    {
+        segment: 'share',
+        title: 'Share',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'archive',
+        title: 'Archive',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'webbackoffice',
+        title: 'Web Back Office',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'feedback',
+        title: 'FeedBack',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'buyprinter',
+        title: 'Buy Printer',
+        icon: <DashboardIcon />,
+    },
+    {
+        kind: 'divider',
+    },
+    {
+        kind: 'header',
+        title: 'Other apps',
+    },
+    {
+        segment: 'kitchen display',
+        title: 'Kitchen Display(KDS)',
+        icon: <DashboardIcon />,
+    },
+    {
+        kind: 'divider',
+    },
+    {
+        kind: 'header',
+        title: 'Settings',
+    },
+    {
+        segment: 'language',
+        title: 'Language',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'receipt settings',
+        title: 'Receipt Settings',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'businness settings',
+        title: 'Beceipt Settings',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'general settings',
+        title: 'General settings',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'logout',
+        title: 'Logout',
         icon: <DashboardIcon />,
     }
 ];
@@ -114,10 +229,9 @@ function ToolbarIcons() {
 
 const demoTheme = createTheme({
     palette: {
-        mode: 'light', 
+        mode: 'light',
         primary: {
-            main: '#2853d8', // AppBar background color (blue)
-            contrastText: '#ffffff', // Text and button color (white)
+            main:'#ffffff',
         },
     },
     components: {
@@ -125,7 +239,8 @@ const demoTheme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundColor: '#2853d8', // Explicitly set AppBar background color to blue
-                    color: '#ffffff', // Text color in the AppBar (white)
+                    color: '#ffffff',
+                    contrastText: '#ffffff', // Text color in the AppBar (white)
                 },
             },
         },
@@ -136,13 +251,20 @@ const demoTheme = createTheme({
                 },
             },
         },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    color: '#ffffff', // Button text color (white)
-                },
-            },
-        },
+        // MuiTypography:{
+        //     styleOverrides: {
+        //         root: {
+        //             contrastText: '#fffff',// Set icon color in AppBar to white
+        //         },
+        //     },
+        // }
+        // MuiButton: {
+        //     styleOverrides: {
+        //         root: {
+        //             color: '#ffffff', // Button text color (white)
+        //         },
+        //     },
+        // },
     },
     cssVariables: {
         colorSchemeSelector: 'data-toolpad-color-scheme',
@@ -160,9 +282,34 @@ const demoTheme = createTheme({
 });
 
 
+
 function DashboardsLayout(props) {
     const { window } = props;
 
+    const [session, setSession] = React.useState({
+        user: {
+          name: 'Bharat Kashyap',
+          mobile: 'bharatkashyap@outlook.com',
+          image: 'https://avatars.githubusercontent.com/u/19550456',
+        },
+      });
+
+    const authentication = React.useMemo(() => {
+        return {
+            signIn: () => {
+                setSession({
+                    user: {
+                        name: 'Bharat Kashyap',
+                        email: 'bharatkashyap@outlook.com',
+                        image: 'https://avatars.githubusercontent.com/u/19550456',
+                    },
+                });
+            },
+            signOut: () => {
+                setSession(null);
+            },
+        };
+    }, []);
     const [pathname, setPathname] = React.useState('/counter');
 
     const router = React.useMemo(() => {
@@ -177,10 +324,12 @@ function DashboardsLayout(props) {
 
     return (
         <AppProvider
+            session={session}
+            authentication={authentication}
             navigation={NAVIGATION}
             branding={{
                 logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-                title: 'MUI',
+                title: 'Bizstack POS',
             }}
             router={router}
             theme={demoTheme}
