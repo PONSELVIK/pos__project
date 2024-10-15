@@ -8,6 +8,8 @@ import Reports from '../pages/Reports';
 import More from '../pages/More';
 
 function DashboardContent( {pathname}) {
+    const decodedPathname = decodeURIComponent(pathname);
+
     switch (pathname) {
         case '/counter':
             return <Counter />; 
@@ -20,7 +22,7 @@ function DashboardContent( {pathname}) {
         case '/more':
             return <More />; 
         default:
-            return <div>Welcome to the Dashboard!</div>;
+            return <div>Welcome to the {decodedPathname}!</div>;
     }
 }
 

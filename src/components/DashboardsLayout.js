@@ -58,7 +58,7 @@ const NAVIGATION = [
         title: 'Management',
     },
     {
-        segment: 'help chat',
+        segment: 'helpchat',
         title: 'Help Chat',
         icon: <DashboardIcon />,
     },
@@ -170,59 +170,67 @@ const NAVIGATION = [
 function ToolbarIcons() {
     return (
         <React.Fragment>
+            <Box
+                // sx={{
+                //     display: 'flex',
+                //     justifyContent: 'flex-end',
+                //     alignItems: 'center',
+                //     gap: { xs: '8px', md: '16px' }, // Adjusting gap based on screen size
+                // }}
+            >
+                <Tooltip title="Chat" enterDelay={1000}>
+                    <IconButton
+                        type="button"
+                        aria-label="chat"
+                        sx={{
+                            display: { xs: 'inline', md: 'inline-block' },
+                         
+                        }}
+                    >
+                        <PinIcon />
+                    </IconButton>
+                </Tooltip>
 
-            <Tooltip title="Chat" enterDelay={1000}>
-                <IconButton
-                    type="button"
-                    aria-label="chat"
-                    sx={{
-                        display: { xs: 'inline', md: 'inline-block' },
-                        mr: 1,
-                    }}
-                >
-                    <PinIcon />
-                </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Help" enterDelay={1000}>
-                <IconButton
-                    type="button"
-                    aria-label="help"
-                    sx={{
-                        display: { xs: 'inline', md: 'inline-block' },
-                        mr: 1,
-                    }}
-                >
-                    <HelpIcon />
-                </IconButton>
-            </Tooltip>
+                <Tooltip title="Help" enterDelay={1000}>
+                    <IconButton
+                        type="button"
+                        aria-label="help"
+                        sx={{
+                            display: { xs: 'inline', md: 'inline-block' },
+                         
+                        }}
+                    >
+                        <HelpIcon />
+                    </IconButton>
+                </Tooltip>
 
 
-            <Tooltip title="Profile" enterDelay={1000}>
-                <IconButton
-                    type="button"
-                    aria-label="help"
-                    sx={{
-                        display: { xs: 'inline', md: 'inline-block' },
-                        mr: 1,
-                    }}
-                >
-                    <PersonAddIcon />
-                </IconButton>
-            </Tooltip>
+                <Tooltip title="Profile" enterDelay={1000}>
+                    <IconButton
+                        type="button"
+                        aria-label="help"
+                        sx={{
+                            display: { xs: 'inline', md: 'inline-block' },
+                         
+                        }}
+                    >
+                        <PersonAddIcon />
+                    </IconButton>
+                </Tooltip>
 
-            <Tooltip title="Cloud Status" enterDelay={1000}>
-                <IconButton
-                    type="button"
-                    aria-label="cloud"
-                    sx={{
-                        display: { xs: 'inline', md: 'inline-block' },
-                        mr: 1,
-                    }}
-                >
-                    <CloudDoneIcon />
-                </IconButton>
-            </Tooltip>
+                <Tooltip title="Cloud Status" enterDelay={1000}>
+                    <IconButton
+                        type="button"
+                        aria-label="cloud"
+                        sx={{
+                            display: { xs: 'inline', md: 'inline-block' },
+                         
+                        }}
+                    >
+                        <CloudDoneIcon />
+                    </IconButton>
+                </Tooltip>
+            </Box>
         </React.Fragment>
     );
 }
@@ -231,23 +239,24 @@ const demoTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main:'#ffffff',
+            main: 'rgb(40 83 216)',
+            contrastText: 'white'
         },
     },
     components: {
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: '#2853d8', // Explicitly set AppBar background color to blue
-                    color: '#ffffff',
-                    contrastText: '#ffffff', // Text color in the AppBar (white)
+                    backgroundColor: 'rgb(40 83 216)',
+                    // color: '#ffffff',
+                    contrastText: '#ffffff',
                 },
             },
         },
         MuiIconButton: {
             styleOverrides: {
                 root: {
-                    color: '#ffffff', // Set icon color in AppBar to white
+                    color: '#ffffff',
                 },
             },
         },
@@ -288,11 +297,11 @@ function DashboardsLayout(props) {
 
     const [session, setSession] = React.useState({
         user: {
-          name: 'Bharat Kashyap',
-          mobile: 'bharatkashyap@outlook.com',
-          image: 'https://avatars.githubusercontent.com/u/19550456',
+            name: 'Bharat Kashyap',
+            mobile: 'bharatkashyap@outlook.com',
+            image: 'https://avatars.githubusercontent.com/u/19550456',
         },
-      });
+    });
 
     const authentication = React.useMemo(() => {
         return {
@@ -329,7 +338,29 @@ function DashboardsLayout(props) {
             navigation={NAVIGATION}
             branding={{
                 logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-                title: 'Bizstack POS',
+                title: (
+                    <Typography
+                      variant="h6" 
+                      sx={{
+                        fontSize: {
+                          md: '1.5rem',  
+                          lg: '2rem',  
+                          xl: '2.25rem',
+                        },
+                        display : {
+                            xs: 'none',
+                            sm: 'none',
+                            md: 'block'
+                        },
+                        fontWeight: 'bold',
+                        whiteSpace: 'nowrap',  // Prevent text wrapping
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',  // Handle long text gracefully
+                      }}
+                    >
+                      Bizstack POS
+                    </Typography>
+                  ),
             }}
             router={router}
             theme={demoTheme}

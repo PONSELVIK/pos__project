@@ -38,9 +38,6 @@ export default function More() {
               {card.description}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
         </Card>
       ))}
     </Box>

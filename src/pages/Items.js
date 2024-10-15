@@ -7,8 +7,12 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconButton } from '@mui/material';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import OfflineBoltOutlinedIcon from '@mui/icons-material/OfflineBoltOutlined';
+import QuickAddCard from './QuickAddCard';
+import Drawer from '@mui/material/Drawer';
+
 
 const Items = () => {
     const [cards, setCards] = useState([
@@ -23,11 +27,19 @@ const Items = () => {
         };
         setCards([...cards, newCard]);
     };
+
+    const [open, setOpen] = React.useState(false);
+
+    const quickAddCard = (newOpen) => () => {
+        setOpen(newOpen);
+    };
+
+ 
     return (
-        <Box display='flex' alignItems= 'center' gap='2' flexWrap='wrap'>
-              <Box display="flex" gap="2" flexWrap="wrap">
+        <div>
+            <Box display="flex" alignItems="center" gap="8px" flexWrap="wrap">
                 {cards.map((card) => (
-                    <Card key={card.id} sx={{ maxWidth: 200 }}>
+                    <Card key={card.id}>
                         <CardContent>
                             <Avatar sx={{ backgroundColor: 'red', m: 'auto', width: 100, height: 100 }} aria-label="recipe">
                                 {card.title.charAt(0)}
@@ -42,20 +54,31 @@ const Items = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button variant="contained" sx={{ backgroundColor: 'blue', color: 'white', width: 200 }}> 100</Button>
+                            <Button variant="contained" sx={{ backgroundColor: 'rgb(40 83 216)', color: 'white', width: 200 }}> 100</Button>
                         </CardActions>
                     </Card>
                 ))}
-            </Box>
 
+                <IconButton
+                    type="button"
+                    onClick={addCard}
+                    sx={{ color: 'rgb(40 83 216)' }}
+                >
+                    <AddCircleOutlinedIcon sx={{ fontSize: 30 }} />
+                </IconButton>
+            </Box>
             <IconButton
                 type="button"
-                onClick={addCard}
-                sx={{ fontSize: 30, color: 'blue',display: { xs: 'inline', md: 'inline-block' },}}
+                onClick={quickAddCard(true)}
+                sx={{ color: 'rgb(40 83 216)', position: 'fixed', bottom: "10vh", right: "8vh" }}
             >
-                <AddCircleIcon sx={{ fontSize: 40 }} />
+                <OfflineBoltOutlinedIcon sx={{ fontSize: 40 }} />
             </IconButton>
-        </Box>
+
+            <Drawer open={open} onClose={quickAddCard(false)} anchor='right'>
+                <QuickAddCard onClose={quickAddCard(false)}/>
+            </Drawer>
+        </div>
     );
 };
 export default Items;

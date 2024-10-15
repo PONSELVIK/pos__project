@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwoTone';
 import IconButton from '@mui/material/IconButton';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 const Counter = () =>
     <div sx={{ display: 'flex',flexDirection: 'center', gap: 2}}>
@@ -13,14 +12,9 @@ const Counter = () =>
 
             <IconButton
                     type="button"
-                    sx={{
-                        color: 'blue',
-                        mt: 2,
-                        display: { xs: 'inline', md: 'inline-block' },
-                        mr: 1,
-                    }}
+                    sx={{ color: 'rgb(40 83 216)' }}
                 >
-                    <AddCircleOutlineTwoToneIcon />
+                    <AddCircleOutlinedIcon sx={{ fontSize: 30 }} />
                 </IconButton>
                 
                 <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 18 ,fontWeight: 'bold'}}>
