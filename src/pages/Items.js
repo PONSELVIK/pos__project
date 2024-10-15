@@ -70,7 +70,7 @@ const Items = () => {
             <IconButton
                 type="button"
                 onClick={quickAddCard(true)}
-                sx={{ color: 'rgb(40 83 216)', position: 'fixed', bottom: "10vh", right: "8vh" }}
+                sx={{ color: 'rgb(40 83 216)', position: 'fixed', bottom: "10vh", right: "7vh" }}
             >
                 <OfflineBoltOutlinedIcon sx={{ fontSize: 40 }} />
             </IconButton>
