@@ -1,23 +1,8 @@
 import React,{ useState } from 'react';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
 import './QuickAddCard.css';
 
 import Button from '@mui/material/Button';
-import NumPad from 'react-numpad';
-
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-    backgroundColor: "rgb(40 83 216)", 
-    color: "white", 
-    height: "7em", 
-    display: "flex", 
-    justifyContent: "center", 
-    alignItems: "center", 
-    zIndex: 1, 
-    padding: theme.spacing(2), 
-}));
-
 
 const DrawerContent = () => {
     
